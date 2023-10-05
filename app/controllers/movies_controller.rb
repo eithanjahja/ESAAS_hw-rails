@@ -1,3 +1,5 @@
+<! -- Controller -->
+
 class MoviesController < ApplicationController
     
     @active="hilite"    
