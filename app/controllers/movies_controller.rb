@@ -7,7 +7,9 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @movies = Movie.with_ratings(@ratings_to_show)
+    @all_ratings = Movie.pluck(:rating).uniq
+    @ratings_to_show = params[:ratings].present? ? params[:ratings].keys : @all_ratings
   end
 
   def new
