@@ -12,7 +12,6 @@ gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -23,7 +22,7 @@ gem 'tzinfo'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  # Call 'byebug' anywhere in the code to stop execution and get adebugger console
   gem 'byebug'
 
   gem 'rspec-rails'
@@ -31,7 +30,6 @@ group :development, :test do
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.6'
-
 end
 
 group :development do
@@ -43,3 +41,4 @@ group :production do
   gem 'pg', '~> 0.21' # for Heroku deployment
   gem 'rails_12factor'
 end
+
