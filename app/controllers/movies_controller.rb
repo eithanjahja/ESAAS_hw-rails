@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+    
+    @active="hilite"    
 
   def show
     id = params[:id] # retrieve movie ID from URI route
@@ -7,9 +9,27 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.with_ratings(@ratings_to_show)
-    @all_ratings = Movie.pluck(:rating).uniq
-    @ratings_to_show = params[:ratings].present? ? params[:ratings].keys : @all_ratings
+    @all_ratings = Movie.all_ratings
+
+    if params[:order]
+      @order = params[:order]
+      session[:order] = @order
+    elsif session[:order]
+      @order = session[:order]
+    else
+      @order = ""
+    end
+
+    if params[:ratings]
+      @ratings_to_show= params[:ratings].keys
+      session[:ratings] = params[:ratings]
+    elsif not params[:home] and session[:ratings]
+      redirect_to movies_path(ratings: session[:ratings], order: session[:order] || "", home: true)
+    else
+      @ratings_to_show = @all_ratings
+    end
+
+    @movies = Movie.get_movies(@ratings_to_show, @order)
   end
 
   def new
